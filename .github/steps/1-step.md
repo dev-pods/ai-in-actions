@@ -1,56 +1,109 @@
 ## Step 1: Introduction to AI Actions
 
-Welcome to AI in Actions! In this exercise, you'll learn to integrate AI capabilities directly into your GitHub Actions workflows using GitHub Models. Let's start by creating your first AI-powered workflow.
+In this exercise, you'll learn to integrate AI capabilities directly into your GitHub Actions workflows using GitHub Models. Let's start with understanding the key concepts and then you'll create and run your first AI-powered workflow!
 
 ### 📖 Theory: GitHub Models in Actions
 
-GitHub Actions can integrate with AI models through the GitHub Models service, which provides access to various AI models via the inference API at `https://models.github.ai/inference`. The built-in `GITHUB_TOKEN` is used to authorize calls to this service, eliminating the need for additional API keys or authentication setup.
+#### 🤖 What is GitHub Models?
 
-Key concepts to understand:
+**GitHub Models** is a service that provides access to various AI models through an inference API. This service is available at `https://models.github.ai/inference` and allows developers to integrate AI capabilities directly into their GitHub workflows.
 
-- The `models: read` permission grants the `GITHUB_TOKEN` access to GitHub Models inference API for making AI requests
-- You can interact with GitHub Models in multiple ways:
-  - **Direct API calls** using `curl` with the `GITHUB_TOKEN` for custom implementations
-  - **GitHub CLI extension** (`gh models`) for command-line AI interactions  
-  - **Ready-to-use GitHub Actions** like `actions/ai-inference` for workflow integration
-  - **Custom Actions** that you build for scenario-specific AI workflows
-- For this exercise, we'll use the `actions/ai-inference` action as it provides the simplest integration path
-- AI in workflows is most useful for tasks requiring content analysis, text processing, and intelligent decision-making
-- For deterministic operations like file manipulation or environment setup, regular actions remain more appropriate
-- The `actions/ai-inference` action supports both inline prompts and system prompts for controlling AI behavior
+#### ⚙️ How GitHub Actions Work with GitHub Models
 
-Learn more about [GitHub Models Documentation](https://docs.github.com/en/github-models), [Integrating AI models into your development workflow](https://docs.github.com/en/github-models/use-github-models/integrating-ai-models-into-your-development-workflow), [AI Inference Action](https://github.com/actions/ai-inference), [GitHub CLI Models Extension](https://github.com/github/gh-models), and [GitHub Actions Permissions](https://docs.github.com/en/actions/tutorials/authenticate-with-github_token#modifying-the-permissions-for-the-github_token).
+The integration between GitHub Actions and GitHub Models is designed to be seamless:
+
+- 🔑 **Built-in Authentication**: The built-in `GITHUB_TOKEN` is used to authorize calls to the GitHub Models service, eliminating the need for additional API keys or complex authentication setup.
+
+- 🔐 **Simple Permissions**: The `models: read` permission grants the `GITHUB_TOKEN` access to the GitHub Models inference API for making AI requests.
+
+- 🎯 **Easy Integration**: For this exercise, we'll use the official [actions/ai-inference](https://github.com/actions/ai-inference) action, which provides a very simple path to using GitHub Models in GitHub Actions.
+
+> [!TIP]
+>
+> Want to dive deeper? Check out these resources:
+>
+> - 📖 [GitHub Models Documentation](https://docs.github.com/en/github-models)
+> - 🔗 [Using AI models with GitHub Actions](https://docs.github.com/en/github-models/use-github-models/integrating-ai-models-into-your-development-workflow#using-ai-models-with-github-actions)
+> - 🔐 [GitHub Actions Permissions](https://docs.github.com/en/actions/tutorials/authenticate-with-github_token#modifying-the-permissions-for-the-github_token)
+
+
 
 ### ⌨️ Activity: Create Your First AI Workflow
 
-1. Create a new workflow file `.github/workflows/ask-ai.yml`
+Now that you understand the concepts, let's put them into practice! Open a new tab in this repository to follow these steps.
 
-1. Set up the workflow with `workflow_dispatch` trigger for manual testing
+1. Navigate to your repository and make sure you're on the `main` branch.
 
-1. Configure the job with `models: read` permission
+1. Create a new workflow file at `.github/workflows/ask-ai.yml`.
 
-1. Add a step using `actions/ai-inference@v2` with a simple prompt asking "What is the meaning of life?"
+1. Add the workflow metadata and permissions:
 
-1. Display the AI response using `$GITHUB_STEP_SUMMARY` to create a nicely formatted output
+   ```yaml
+   name: Ask AI
+   on:
+     workflow_dispatch:
 
-1. Commit and push your workflow file
+   permissions:
+     models: read
+   ```
+  
+   This sets up the workflow, enables manual triggering through the GitHub UI with `workflow_dispatch`, and grants permission to access GitHub Models using the built-in `GITHUB_TOKEN`.
 
-### ⌨️ Activity: Test Your AI Workflow
+1. Add the job definition with AI inference steps:
 
-1. Navigate to the Actions tab in your repository
+   ```yaml
+   jobs:
+     ask-ai:
+       runs-on: ubuntu-latest
 
-1. Find the "Ask AI" workflow and click "Run workflow"
+       steps:
+         - name: AI Inference
+           id: ai-response
+           uses: actions/ai-inference@v2
+           with:
+             prompt: |
+               What is the meaning of life?
 
-1. Trigger the workflow manually and wait for it to complete
+         - name: Display AI Response
+           run: |
+             echo "## 🤖 AI Response" >> $GITHUB_STEP_SUMMARY
+             echo "" >> $GITHUB_STEP_SUMMARY
+             echo "${{ steps.ai-response.outputs.response }}" >> $GITHUB_STEP_SUMMARY
+   ```
 
-1. Check the workflow run summary to see the AI's response displayed
+   This creates a job named `ask-ai` that runs on the latest Ubuntu runner, uses the `actions/ai-inference@v2` action to send a prompt to the AI, captures the AI response with the ID `ai-response` for later reference, and displays the response in a formatted summary using GitHub's step summary feature.
+
+1. Save your workflow file with all the content above.
+
+1. Commit and push your workflow file to the repository.
 
 <details>
 <summary>Having trouble? 🤷</summary><br/>
 
 - Make sure your workflow file is saved in the correct location: `.github/workflows/ask-ai.yml`
-- Verify that the `models: read` permission is added to the job level
+- Verify that the `models: read` permission is added at the workflow level (not job level)
 - Check that you're using the correct action name: `actions/ai-inference@v2`
-- If the workflow doesn't appear in the Actions tab, try refreshing the page after committing
+- If the workflow doesn't appear in the Actions tab after committing, try refreshing the page
+
+</details>
+
+### ⌨️ Activity: Test Your AI Workflow
+
+Now let's test the workflow you just created to see AI in action!
+
+1. Navigate to the **Actions** tab in your repository.
+
+1. Look for the **Ask AI** workflow in the workflow list and **Run** it.
+
+1. Wait for the workflow to complete and check the workflow run summary to see the AI's response displayed in a nicely formatted way.
+
+
+<details>
+<summary>Having trouble? 🤷</summary><br/>
+
+- **Workflow fails to run**: Ensure you're on a repository where you have write permissions and that GitHub Actions are enabled
+- **No AI response**: Make sure the `id: ai-response` is set on the AI Inference step and referenced correctly in the Display step
+- **Permission errors**: Double-check that the `models: read` permission is properly configured in your workflow file
+- **Action not found**: Verify you're using the exact action name: `actions/ai-inference@v2`
 
 </details>
