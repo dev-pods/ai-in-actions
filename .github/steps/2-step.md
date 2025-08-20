@@ -2,24 +2,8 @@
 
 Great work! Your AI workflow is now functional. Next, let's make it more interactive and powerful by adding dynamic context that allows users to provide input and gives the AI more personality.
 
-### 📖 Theory: Evolving AI Workflows with Prompt Engineering
+### 📖 Theory: 
 
-As AI workflows mature, they evolve from simple, hardcoded interactions to sophisticated, reusable tools. This progression involves two key improvements: making workflows interactive through user inputs and refining AI behavior through prompt engineering.
-
-**Workflow Evolution Stages:**
-
-- **Basic**: Hardcoded prompts with fixed questions (like your Step 1 workflow)
-- **Interactive**: User-driven inputs that make workflows reusable across different scenarios
-- **Intelligent**: System prompts that give AI consistent personality and specialized expertise
-
-**Prompt Engineering Fundamentals:**
-
-- **System prompts** define the AI's role, personality, and response style - they set the "character" of your AI assistant
-- **User prompts** contain the actual questions or tasks - they provide the specific content to process
-- **Separation of concerns** allows you to maintain consistent AI behavior while handling varied user requests
-- **Persona design** creates engaging, memorable AI interactions that users want to return to
-
-This combination transforms a basic AI workflow into a specialized tool that teams can use repeatedly, with the AI maintaining its unique personality while addressing different questions and scenarios.
 
 Learn more about [GitHub Actions Context](https://docs.github.com/en/actions/learn-github-actions/contexts), [Workflow Inputs](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#onworkflow_dispatchinputs), and [AI Inference System Prompts](https://github.com/actions/ai-inference#system-prompts).
 
