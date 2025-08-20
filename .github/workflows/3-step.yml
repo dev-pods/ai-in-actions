@@ -21,7 +21,7 @@ jobs:
 
   post_review_content:
     name: Post review content
-    needs: [find_exercise, check_step_work]
+    needs: [find_exercise]
     runs-on: ubuntu-latest
     env:
       ISSUE_REPOSITORY: ${{ github.repository }}
@@ -59,7 +59,7 @@ jobs:
 
   finish_exercise:
     name: Finish Exercise
-    needs: [find_exercise, check_step_work, post_review_content]
+    needs: [find_exercise, post_review_content]
     uses: skills/exercise-toolkit/.github/workflows/finish-exercise.yml@v0.7.0
     with:
       issue-url: ${{ needs.find_exercise.outputs.issue-url }}
