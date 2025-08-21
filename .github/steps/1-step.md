@@ -26,8 +26,6 @@ The integration between GitHub Actions and GitHub Models is designed to be seaml
 > - 🔗 [Using AI models with GitHub Actions](https://docs.github.com/en/github-models/use-github-models/integrating-ai-models-into-your-development-workflow#using-ai-models-with-github-actions)
 > - 🔐 [GitHub Actions Permissions](https://docs.github.com/en/actions/tutorials/authenticate-with-github_token#modifying-the-permissions-for-the-github_token)
 
-
-
 ### ⌨️ Activity: Create Your First AI Workflow
 
 Now that you understand the concepts, let's put them into practice! Open a new tab in this repository to follow these steps.
@@ -46,7 +44,7 @@ Now that you understand the concepts, let's put them into practice! Open a new t
    permissions:
      models: read
    ```
-  
+
    This sets up the workflow, enables manual triggering through the GitHub UI with `workflow_dispatch`, and grants permission to access GitHub Models using the built-in `GITHUB_TOKEN`.
 
 1. Add the job definition with AI inference steps:
@@ -68,7 +66,7 @@ Now that you understand the concepts, let's put them into practice! Open a new t
            run: |
              echo "## 🤖 AI Response" >> $GITHUB_STEP_SUMMARY
              echo "" >> $GITHUB_STEP_SUMMARY
-             echo "${{ steps.ai-response.outputs.response }}" >> $GITHUB_STEP_SUMMARY
+             echo "{% raw %}${{ steps.ai-response.outputs.response }}{% endraw %}" >> $GITHUB_STEP_SUMMARY
    ```
 
    This creates a job named `ask-ai` that runs on the latest Ubuntu runner, uses the `actions/ai-inference@v2` action to send a prompt to the AI, captures the AI response with the ID `ai-response` for later reference, and displays the response in a formatted summary using GitHub's step summary feature.
@@ -96,7 +94,6 @@ Now let's test the workflow you just created to see AI in action!
 1. Look for the **Ask AI** workflow in the workflow list and **Run** it.
 
 1. Wait for the workflow to complete and check the workflow run summary to see the AI's response displayed in a nicely formatted way.
-
 
 <details>
 <summary>Having trouble? 🤷</summary><br/>
