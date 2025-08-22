@@ -4,11 +4,11 @@ _Learn how to integrate AI models directly into your GitHub Actions workflows us
 
 ## Welcome
 
-- **Who is this for**: Developers with intermediate GitHub Actions experience who want to incorporate AI capabilities into their workflows
-- **What you'll learn**: How to use GitHub Models service to add AI inference to GitHub Actions workflows, create dynamic AI-powered automation, and combine AI with other GitHub Actions
-- **What you'll build**: GitHub Actions workflows that use AI models to perform intelligent tasks, including an automated issue analysis system that provides intelligent feedback and triage suggestions
+- **Who is this for**: Developers new to AI integration who want to learn how to incorporate AI capabilities into their GitHub Actions workflows
+- **What you'll learn**: How to use GitHub Models service to add AI inference to your workflows, pass dynamic data to AI prompts, and combine AI actions with other GitHub Actions
+- **What you'll build**: A basic AI question-answering workflow and an automated issue analysis system that comments on new issues
 - **Prerequisites**: [Hello GitHub Actions](https://github.com/skills-dev/hello-github-actions) exercise
-- **How long**: This exercise takes less than 1 hour to complete.
+- **How long**: This exercise takes less than 30 minutes to complete.
 
 In this exercise, you will:
 
@@ -22,7 +22,7 @@ Simply copy the exercise to your account, then give your favorite Octocat (Mona)
 
 <!--  (replace-me: Make sure to edit the URL with proper template_owner, template_name, repo name and description)  -->
 
-[![](https://img.shields.io/badge/Copy%20Exercise-%E2%86%92-1f883d?style=for-the-badge&logo=github&labelColor=197935)](https://github.com/new?template_owner=skills&template_name=ai-in-actions&owner=%40me&name=skills-ai-in-actions&description=Exercise:+AI+in+Actions&visibility=public)
+[![](https://img.shields.io/badge/Copy%20Exercise-%E2%86%92-1f883d?style=for-the-badge&logo=github&labelColor=197935)](https://github.com/new?template_owner=FidelusAleksander&template_name=ai-in-actions&owner=%40me&name=skills-ai-in-actions&description=Exercise:+AI+in+Actions&visibility=public)
 
 <details>
 <summary>Having trouble? 🤷</summary><br/>
