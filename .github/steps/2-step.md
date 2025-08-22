@@ -1,4 +1,4 @@
-## Step 2
+## Step 2: Composing AI Workflows
 
 Great work! Your first AI workflow is now functional. Next, let's see how to combine the `ai-inference` action with other actions to create meaningful AI workflows for your projects.
 
@@ -66,7 +66,7 @@ This pattern keeps workflows simple while handling judgment‑heavy tasks that a
            id: ai-response
            uses: actions/ai-inference@v2
            with:
-             token: ${{ secrets.GITHUB_TOKEN }}
+             token: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
              system-prompt: |
                You are an assistant that triages GitHub issues. Summarize the issue, identify missing information and propose next steps. Be concise and actionable.
              prompt: |
