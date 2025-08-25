@@ -56,6 +56,10 @@ This pattern keeps workflows simple while handling judgment‑heavy tasks that a
 
    In this scenario we want to analyze the issue content to provide intelligent feedback and recommendations:
 
+   This workflow introduces two new parameters:
+   - **`system-prompt`**: Defines the AI's role and behavior - think of it as giving the AI specific instructions on how to act and respond
+   - **`max-tokens`**: Sets the maximum length of the AI's response to ensure complete answers aren't cut off mid-sentence
+
    ```yaml
    jobs:
      analyze:
@@ -67,8 +71,13 @@ This pattern keeps workflows simple while handling judgment‑heavy tasks that a
            uses: actions/ai-inference@v2
            with:
              token: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
+             max-tokens: 1000
              system-prompt: |
-               You are an assistant that triages GitHub issues. Summarize the issue, identify missing information and propose next steps. Be concise and actionable.
+               You are a GitHub issue assistant. Your task is to analyze newly opened issues. 
+               
+               Provide concise, helpful suggestions, ask clarifying questions and identify any missing information that would help resolve the issue faster. 
+               
+               Always respond with ready-to-use markdown content (no code blocks) that can be posted directly as an issue comment. 
              prompt: |
                New issue was opened by {% raw %}${{ github.event.issue.user.login }}{% endraw %}
                Title: {% raw %}${{ github.event.issue.title }}{% endraw %}
@@ -80,7 +89,7 @@ This pattern keeps workflows simple while handling judgment‑heavy tasks that a
 
    > 🪧 **Note:** Notice how we are passing dynamic values from the `github` event context
 
-1. Now we'll use the AI output file to post a comment back to the issue to provide immediate feedback:
+1. Now we'll use the `ai-inference` `response` output to post a comment back to the issue to provide immediate feedback:
 
    ```yaml
    - name: Comment results on the issue
@@ -88,7 +97,8 @@ This pattern keeps workflows simple while handling judgment‑heavy tasks that a
      with:
        token: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
        issue-number: {% raw %}${{ github.event.issue.number }}{% endraw %}
-       body-path: {% raw %}${{ steps.ai-response.outputs.response-file }}{% endraw %}
+       body: {% raw %}${{ steps.ai-response.outputs.response }}{% endraw %}
+
    ```
 
 1. And we're done! Commit the file directly to the `main` branch, then open the **Actions** tab and confirm the workflow appears.
