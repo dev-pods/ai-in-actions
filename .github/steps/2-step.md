@@ -4,37 +4,35 @@ Great work! Your first AI workflow is now functional. Next, let's see how to com
 
 ### 📖 Theory: Composing AI Workflows
 
-AI adds the most value in Actions when you connect three pieces:
+AI adds the most value in Actions when you connect three sequential processes to create intelligent automation:
 
 ```mermaid
 graph LR
-    A[📥 Context] --> B[🤖 AI Inference]
-    B --> C[📤 Impact]
+    A[📥 Context Gathering] --> B[🤖 AI Processing]
+    B --> C[📤 Creating Impact]
 
     style A fill:#4fc3f7,stroke:#333,stroke-width:2px,color:#000
     style B fill:#ffb74d,stroke:#333,stroke-width:2px,color:#000
     style C fill:#ba68c8,stroke:#333,stroke-width:2px,color:#000
 ```
 
-- 📥 **Context**: Gather data from outputs of other actions (e.g file contents, API results, or computed values) or `github` [event context](https://docs.github.com/actions/reference/workflows-and-actions/contexts#github-context)
-- 🤖 **Inference**: Use the context to build a focused prompt for `actions/ai-inference` to analyze
-- 📤 **Impact**: Pass the AI result to another action/script to create impact.
+Here's how this workflow pattern works:
 
-This pattern keeps workflows simple while handling judgment‑heavy tasks that are hard to script deterministically.
+1. **📥 Context Gathering**: Use GitHub Actions to collect data from [event context](https://docs.github.com/en/actions/learn-github-actions/contexts#github-context), file contents, API results, or outputs from previous workflow steps
+1. **🤖 AI Processing**: Feed the gathered context into `actions/ai-inference` with a focused [system prompt](https://github.com/actions/ai-inference#system-prompts) that defines the AI's role and expected output format.
+1. **📤 Creating Impact**: Use the AI's response as input to another action that creates meaningful change—posting comments, updating files, or triggering other workflows
 
-> [!TIP]
->
-> Want to dive deeper? Check out these resources:
->
-> - 📖 [GitHub Actions Context](https://docs.github.com/en/actions/learn-github-actions/contexts)
-> - 🔧 [Workflow Inputs](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#onworkflow_dispatchinputs)
-> - 🤖 [AI Inference System Prompts](https://github.com/actions/ai-inference#system-prompts)
+This three-step pattern keeps workflows maintainable while automating judgment-heavy tasks that would be difficult to script with traditional logic.
 
 ### ⌨️ Activity: Create an issue analyzer workflow
 
-1. Navigate to the `Code` tab of your repository. Then into `.github/workflows/` directory.
+In this activity, we'll build a complete AI workflow that demonstrates the three-step pattern: gathering context from newly opened GitHub issue events, processing that context with AI to generate analysis, and creating impact by posting the results as an issue comment.
 
-1. Click `Add File` and create a new workflow file named `issue-analyzer.yml`
+1. Create a new workflow file named:
+
+    ```text
+    issue-analyzer.yml
+    ```
 
 1. Add the workflow metadata and permissions
 
@@ -58,9 +56,7 @@ This pattern keeps workflows simple while handling judgment‑heavy tasks that a
 
    In this scenario we want to analyze the issue content to provide intelligent feedback and recommendations:
 
-   This workflow introduces two new parameters:
-   - **`system-prompt`**: Defines the AI's role and behavior - think of it as giving the AI specific instructions on how to act and respond
-   - **`max-tokens`**: Sets the maximum length of the AI's response to ensure complete answers aren't cut off mid-sentence
+   GitHub Actions automatically provides us with rich context through the `github.event` object whenever an issue is opened. This includes the issue title, body content, and author information—exactly the data our AI needs to provide intelligent analysis.
 
    ```yaml
    jobs:
@@ -75,11 +71,11 @@ This pattern keeps workflows simple while handling judgment‑heavy tasks that a
              token: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
              max-tokens: 1000
              system-prompt: |
-               You are a GitHub issue assistant. Your task is to analyze newly opened issues. 
-               
-               Provide concise, helpful suggestions, ask clarifying questions and identify any missing information that would help resolve the issue faster. 
-               
-               Always respond with ready-to-use markdown content (no code blocks) that can be posted directly as an issue comment. 
+               You are a GitHub issue assistant. Your task is to analyze newly opened issues.
+
+               Provide concise, helpful suggestions, ask clarifying questions and identify any missing information that would help resolve the issue faster.
+
+               Always respond with ready-to-use markdown content (no code blocks) that can be posted directly as an issue comment.
 
                Sign off as AI assistant.
              prompt: |
@@ -91,7 +87,8 @@ This pattern keeps workflows simple while handling judgment‑heavy tasks that a
                ---
    ```
 
-   > 🪧 **Note:** Notice how we are passing dynamic values from the `github` event context
+
+   > 🪧 **Note:** The **`max-tokens`** parameter is used to control the maximum length of the response. Low values could mean the response is cut off halway.
 
 1. Now we'll use the `ai-inference` `response` output to post a comment back to the issue to provide immediate feedback:
 
@@ -117,8 +114,7 @@ This pattern keeps workflows simple while handling judgment‑heavy tasks that a
 ### ⌨️ Activity: Test the workflow
 
 1. Navigate to the Issues tab and click **New issue**.
-
-   Create an issue with any title and body you'd like, or use these examples:
+1. Create an issue with any title and body you'd like, or use these examples:
 
    **Title example:**
 
