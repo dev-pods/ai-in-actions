@@ -10,11 +10,11 @@ In this exercise, you'll learn to integrate AI capabilities directly into your G
 
 #### ⚙️ How GitHub Actions work with GitHub Models
 
-The integration between GitHub Actions and GitHub Models is designed to be seamless:
+The [integration](https://docs.github.com/en/github-models/use-github-models/integrating-ai-models-into-your-development-workflow#using-ai-models-with-github-actions) between GitHub Actions and GitHub Models is designed to be seamless:
 
-- 🔑 **Built-in Authentication**: The GitHub Actions built-in `GITHUB_TOKEN` can be used to authorize calls to the GitHub Models service, eliminating the need for additional API keys or complex authentication setup with third party providers.
+- 🔑 **Built-in Authentication**: The GitHub Actions built-in [`GITHUB_TOKEN`](https://docs.github.com/en/actions/tutorials/authenticate-with-github_token#modifying-the-permissions-for-the-github_token) can be used to authorize calls to the GitHub Models service, eliminating the need for additional API keys or complex authentication setup with third party providers.
 
-- 🔐 **Simple Permissions**: The `models: read` permission grants the `GITHUB_TOKEN` access to the GitHub Models inference API for making AI requests.
+- 🔐 **Simple Permissions**: The [`models: read`](https://docs.github.com/en/actions/tutorials/authenticate-with-github_token#modifying-the-permissions-for-the-github_token) permission grants the `GITHUB_TOKEN` access to the GitHub Models inference API for making AI requests.
 
 - 🎯 **Easy Integration**: The official [actions/ai-inference](https://github.com/actions/ai-inference) action provides a very simple path to using GitHub Models in GitHub Actions.
 
@@ -24,9 +24,6 @@ The integration between GitHub Actions and GitHub Models is designed to be seaml
 >
 > - 📖 [GitHub Models Documentation](https://docs.github.com/en/github-models)
 > - ⚡ [Rate Limits](https://docs.github.com/en/github-models/use-github-models/prototyping-with-ai-models#rate-limits)
-> - 🔗 [Using AI models with GitHub Actions](https://docs.github.com/en/github-models/use-github-models/integrating-ai-models-into-your-development-workflow#using-ai-models-with-github-actions)
-> - 🔐 [GitHub Actions Permissions](https://docs.github.com/en/actions/tutorials/authenticate-with-github_token#modifying-the-permissions-for-the-github_token)
-
 
 ### ⌨️ Activity: Create Your First AI Workflow
 
