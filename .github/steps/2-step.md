@@ -87,7 +87,6 @@ In this activity, we'll build a complete AI workflow that demonstrates the three
                ---
    ```
 
-
    > 🪧 **Note:** The **`max-tokens`** parameter is used to control the maximum length of the response. Low values could mean the response is cut off halway.
 
 1. Now we'll use the `ai-inference` `response` output to post a comment back to the issue to provide immediate feedback:
@@ -128,7 +127,7 @@ In this activity, we'll build a complete AI workflow that demonstrates the three
    Getting 500 errors when trying to log in on my phone. It works sometimes but not always.
    ```
 
-1. Create the issue and observe your workflow running in the **Actions** tab.
+1. As you create the issue, you observe your workflow running in the **Actions** tab.
 1. When the workflow completes, you should see a new comment on the issue with the AI Issue analysis.
 
 <details>
