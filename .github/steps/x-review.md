@@ -6,14 +6,11 @@ _Congratulations! You've completed this exercise and learned how to integrate AI
 
 Here's a recap of your accomplishments:
 
-- Set up AI inference in GitHub Actions with proper permissions
-- Used dynamic context to create flexible, user-driven AI workflows  
-- Combined AI inference with GitHub API access to analyze repository data
-- Built an intelligent issue analysis system that provides automated insights
+- Created your first AI-powered GitHub Actions workflow using the `actions/ai-inference` action
+- Built an intelligent workflow that automatically responds to new issues with AI-generated feedback
+- Integrated multiple actions to create end-to-end automation that combines AI with traditional GitHub Actions
 
 ### What's next?
 
-- [GitHub Models Documentation](https://docs.github.com/en/github-models)
-- [Advanced GitHub Actions](https://learn.github.com/skills)
-- [GitHub Actions Marketplace](https://github.com/marketplace?type=actions)
-- [GitHub Skills Website](https://skills.github.com/)
+- Take another GitHub Skills exercise on [GitHub Learn](https://learn.github.com/skills)
+- Browse the [GitHub Marketplace](https://github.com/marketplace?type=actions) to discover actions that complement `ai-inference` and build more sophisticated AI-powered workflows
