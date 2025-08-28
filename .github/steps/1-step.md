@@ -64,7 +64,7 @@ Let's create a simple workflow that we can trigger manually from the GitHub UI.
            with:
              token: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
              prompt: |
-               What is the meaning of life?
+               Give me a 14-day learning plan to master GitHub.
 
          - name: Display AI Response
            run: |
