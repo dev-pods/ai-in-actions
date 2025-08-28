@@ -23,7 +23,7 @@ The [integration](https://docs.github.com/en/github-models/use-github-models/int
 > Want to dive deeper? Check out these resources:
 >
 > - 📖 [GitHub Models Documentation](https://docs.github.com/en/github-models)
-> - ⚡ [Rate Limits](https://docs.github.com/en/github-models/use-github-models/prototyping-with-ai-models#rate-limits)
+> - ⚡ [Rate Limits](https://docs.github.com/en/github-models/use-github-models/prototyping-with-ai-models#rate-limits) for GitHub Models
 
 ### ⌨️ Activity: Create Your First AI Workflow
 
@@ -33,7 +33,11 @@ Let's create a simple workflow that we can trigger manually from the GitHub UI.
 
 1. Navigate to the `Code` tab of your repository. Then into `.github/workflows/` directory.
 
-1. Click `Add File` and create a new workflow file named `ask-ai.yml`
+1. Click `Add File` and create a new workflow file named
+
+   ```text
+   ask-ai.yml
+   ```
 
 1. Start by adding the workflow name, manual event trigger and required permissions:
 
@@ -48,9 +52,9 @@ Let's create a simple workflow that we can trigger manually from the GitHub UI.
 
    > ❗ **Caution:** Copy the contents as provided, as this exact workflow name (`Ask AI`) is required to progress to next steps of this exercise.
 
-1. Now we'll create a job that uses the AI inference action.
+1. Now we'll add a job that uses the AI inference action.
 
-   In this simple scenario, we'll ask the AI a philosophical question and display the response in the workflow summary:
+   In this simple scenario, we'll ask the AI a simple hardcoded question and display the response in the workflow summary:
 
    ```yaml
    jobs:
@@ -64,7 +68,7 @@ Let's create a simple workflow that we can trigger manually from the GitHub UI.
            with:
              token: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
              prompt: |
-               Give me a 14-day learning plan to master GitHub.
+               Give me a programming joke.
 
          - name: Display AI Response
            run: |
@@ -72,6 +76,8 @@ Let's create a simple workflow that we can trigger manually from the GitHub UI.
              echo "" >> $GITHUB_STEP_SUMMARY
              echo "{% raw %}${{ steps.ai-response.outputs.response }}{% endraw %}" >> $GITHUB_STEP_SUMMARY
    ```
+
+> ❗ **Caution:** Be mindful of YAML formatting! GitHub's file editor will show red underlines for certain YAML errors.
 
 1. Commit the workflow file directly to the `main` branch.
 
@@ -83,9 +89,7 @@ Now let's test the workflow you just created to see AI in action!
 
 1. In the left sidebar, look for the **Ask AI** workflow in the workflow list and click on it.
 
-1. Since this workflow uses `workflow_dispatch` (which allows manual triggering), you'll see a **"Run workflow"** button on the right side of the workflow page. Click this button.
-
-1. A dropdown will appear asking you to select a branch. Keep the default branch selected and click the green **"Run workflow"** button.
+1. Click the **Run workflow** button, keep the default branch selected, and click the green **Run workflow** button to trigger it.
 
 1. Wait for the workflow to complete and check the workflow run summary to see the AI's response displayed in a nicely formatted way.
 
