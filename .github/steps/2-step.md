@@ -8,8 +8,8 @@ AI adds the most value in Actions when you connect three sequential processes to
 
 ```mermaid
 graph LR
-    A[📥 Context Gathering] --> B[🤖 AI Processing]
-    B --> C[📤 Creating Impact]
+    A[🔍 Context Gathering] --> B[🤖 AI Processing]
+    B --> C[🚀 Creating Impact]
 
     style A fill:#4fc3f7,stroke:#333,stroke-width:2px,color:#000
     style B fill:#ffb74d,stroke:#333,stroke-width:2px,color:#000
@@ -18,9 +18,9 @@ graph LR
 
 Here's how this workflow pattern works:
 
-1. **📥 Context Gathering**: Use GitHub Actions to collect data from [event context](https://docs.github.com/en/actions/learn-github-actions/contexts#github-context), file contents, API results, or outputs from previous workflow steps
+1. **🔍 Context Gathering**: Use GitHub Actions to collect data from [event context](https://docs.github.com/en/actions/learn-github-actions/contexts#github-context), file contents, API results, or outputs from previous workflow steps
 1. **🤖 AI Processing**: Feed the gathered context into `actions/ai-inference` with a focused [system prompt](https://github.com/actions/ai-inference#system-prompts) that defines the AI's role and expected output format.
-1. **📤 Creating Impact**: Use the AI's response as input to another action that creates meaningful change—posting comments, updating files, or triggering other workflows
+1. **🚀 Creating Impact**: Use the AI's response as input to another action that creates meaningful change such as posting comments, updating files or creating release notes
 
 This three-step pattern keeps workflows maintainable while automating judgment-heavy tasks that would be difficult to script with traditional logic.
 

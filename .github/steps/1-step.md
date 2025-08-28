@@ -93,6 +93,8 @@ Now let's test the workflow you just created to see AI in action!
 
 1. Wait for the workflow to complete and check the workflow run summary to see the AI's response displayed in a nicely formatted way.
 
+1. As your workflow completes successfully, Mona will automatically prepare the next step in your learning journey!
+
 <details>
 <summary>Having trouble? 🤷</summary><br/>
 
