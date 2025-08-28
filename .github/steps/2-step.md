@@ -89,7 +89,7 @@ In this activity, we'll build a complete AI workflow that demonstrates the three
 
    > 🪧 **Note:** The **`max-tokens`** parameter is used to control the maximum length of the response. Low values could mean the response is cut off halway.
 
-1. Now we'll use the `ai-inference` `response` output to post a comment back to the issue to provide immediate feedback:
+1. Now let's add a step that will post the issue comment using the `ai-inference` `response` output:
 
    ```yaml
    - name: Comment results on the issue
