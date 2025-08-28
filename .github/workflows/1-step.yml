@@ -80,7 +80,7 @@ jobs:
           vars: |
             step_number: 1
             results_table:
-              - description: "Ask AI workflow completed successfully"
+              - description: "[Ask AI workflow run](${{ github.event.workflow_run.html_url }}) completed successfully"
                 passed: ${{ steps.check-workflow-success.outcome == 'success' }}
 
       # END: Check practical exercise
