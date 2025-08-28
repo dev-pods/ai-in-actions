@@ -35,7 +35,7 @@ Let's create a simple workflow that we can trigger manually from the GitHub UI.
 
 1. Click `Add File` and create a new workflow file named `ask-ai.yml`
 
-1. Add the workflow name, manual event trigger and required permissions:
+1. Start by adding the workflow name, manual event trigger and required permissions:
 
    ```yaml
    name: Ask AI
@@ -75,14 +75,17 @@ Let's create a simple workflow that we can trigger manually from the GitHub UI.
 
 1. Commit the workflow file directly to the `main` branch.
 
-
 ### ⌨️ Activity: Test Your AI Workflow
 
 Now let's test the workflow you just created to see AI in action!
 
 1. Navigate to the **Actions** tab in your repository.
 
-1. Look for the **Ask AI** workflow in the workflow list and **Run** it.
+1. In the left sidebar, look for the **Ask AI** workflow in the workflow list and click on it.
+
+1. Since this workflow uses `workflow_dispatch` (which allows manual triggering), you'll see a **"Run workflow"** button on the right side of the workflow page. Click this button.
+
+1. A dropdown will appear asking you to select a branch. Keep the default branch selected and click the green **"Run workflow"** button.
 
 1. Wait for the workflow to complete and check the workflow run summary to see the AI's response displayed in a nicely formatted way.
 
