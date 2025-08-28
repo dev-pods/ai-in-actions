@@ -24,20 +24,22 @@ Here's how this workflow pattern works:
 
 This three-step pattern keeps workflows maintainable while automating judgment-heavy tasks that would be difficult to script with traditional logic.
 
-### ⌨️ Activity: Create an issue analyzer workflow
+### ⌨️ Activity: Create an automated AI issue analysis workflow
 
-In this activity, we'll build a complete AI workflow that demonstrates the three-step pattern: gathering context from newly opened GitHub issue events, processing that context with AI to generate analysis, and creating impact by posting the results as an issue comment.
+Let's build a workflow that will automatically analyze newly created GitHub issues, providing immediate feedback about missing information, suggesting improvements, and asking clarifying questions.
+
+We'll follow the three-step pattern: gathering context from issue events, processing with AI, and posting results as comments.
 
 1. Create a new workflow file named:
 
-    ```text
-    issue-analyzer.yml
-    ```
+   ```text
+   issue-completeness.yml
+   ```
 
 1. Add the workflow metadata and permissions
 
    ```yaml
-   name: Issue Analyzer
+   name: Issue Completeness
 
    on:
      issues:
@@ -50,7 +52,7 @@ In this activity, we'll build a complete AI workflow that demonstrates the three
 
    This workflow will run whenever a new issue is opened with the permissions to access GitHub Models and to write new issue comments.
 
-   > ❗ **Caution:** Copy the contents as provided, as this exact workflow name (`Issue Analyzer`) is required to progress to next steps of this exercise.
+   > ❗ **Caution:** Copy the contents as provided, as this exact workflow name (`Issue Completeness`) is required to progress to next steps of this exercise.
 
 1. Now we'll create a job that uses the AI inference action.
 
@@ -61,7 +63,7 @@ In this activity, we'll build a complete AI workflow that demonstrates the three
    ```yaml
    jobs:
      analyze:
-       name: AI Issue Analyzer
+       name: AI Issue Completeness
        runs-on: ubuntu-latest
        steps:
          - name: Analyze issue with AI
@@ -71,7 +73,7 @@ In this activity, we'll build a complete AI workflow that demonstrates the three
              token: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
              max-tokens: 1000
              system-prompt: |
-               You are a GitHub issue assistant. Your task is to analyze newly opened issues.
+               You are a GitHub issue assistant. Your task is to analyze newly opened issues for completeness.
 
                Provide concise, helpful suggestions, ask clarifying questions and identify any missing information that would help resolve the issue faster.
 

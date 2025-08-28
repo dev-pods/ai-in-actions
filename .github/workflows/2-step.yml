@@ -2,7 +2,7 @@ name: Step 2
 
 on:
   workflow_run:
-    workflows: ["Issue Analyzer"]
+    workflows: ["Issue Completeness"]
     types:
       - completed
 
@@ -57,7 +57,7 @@ jobs:
 
       # START: Check practical exercise
 
-      - name: Check if Issue Analyzer workflow completed successfully
+      - name: Check if Issue Completeness workflow completed successfully
         id: check-workflow-success
         continue-on-error: true
         run: |
@@ -80,7 +80,7 @@ jobs:
           vars: |
             step_number: 2
             results_table:
-              - description: "Issue Analyzer workflow completed successfully"
+              - description: "Issue Completeness workflow completed successfully"
                 passed: ${{ steps.check-workflow-success.outcome == 'success' }}
 
       # END: Check practical exercise
