@@ -9,7 +9,7 @@ AI adds the most value in Actions when you connect three sequential processes to
 ```mermaid
 graph LR
     A[🔍 Context Gathering] --> B[🤖 AI Processing]
-    B --> C[🚀 Creating Impact]
+    B --> C[🚀 Applying Results]
 
     style A fill:#4fc3f7,stroke:#333,stroke-width:2px,color:#000
     style B fill:#ffb74d,stroke:#333,stroke-width:2px,color:#000
@@ -20,7 +20,7 @@ Here's how this workflow pattern works:
 
 1. **🔍 Context Gathering**: Use GitHub Actions to collect data from [event context](https://docs.github.com/en/actions/learn-github-actions/contexts#github-context), file contents, API results, or outputs from previous workflow steps
 1. **🤖 AI Processing**: Feed the gathered context into `actions/ai-inference` with a focused [system prompt](https://github.com/actions/ai-inference#system-prompts) that defines the AI's role and expected output format.
-1. **🚀 Creating Impact**: Use the AI's response as input to another action that creates meaningful change such as posting comments, updating files or creating release notes
+1. **🚀 Applying Results**: Use the AI's response as input to another action that creates meaningful change such as posting comments, updating files or creating release notes
 
 This three-step pattern keeps workflows maintainable while automating judgment-heavy tasks that would be difficult to script with traditional logic.
 
@@ -58,7 +58,7 @@ We'll follow the three-step pattern: gathering context from issue events, proces
 
    In this scenario we want to analyze the issue content to provide intelligent feedback and recommendations:
 
-   GitHub Actions automatically provides us with rich context through the `github.event` object whenever an issue is opened. This includes the issue title, body content, and author information—exactly the data our AI needs to provide intelligent analysis.
+   GitHub Actions automatically provides us with [rich context](https://docs.github.com/en/webhooks/webhook-events-and-payloads?actionType=opened#issues) through the `github.event` object whenever an issue is opened. This includes the issue title, body content, and author information—exactly the data `ai-inference` needs to provide intelligent analysis.
 
    ```yaml
    jobs:
@@ -102,6 +102,8 @@ We'll follow the three-step pattern: gathering context from issue events, proces
        body: {% raw %}${{ steps.ai-response.outputs.response }}{% endraw %}
 
    ```
+
+   > ⚠️ **Important:** Make sure this step is properly indented at the same level as the previous step. Both steps should be at the same indentation level under the `steps:` section.
 
 1. And we're done! Commit the file directly to the `main` branch, then open the **Actions** tab and confirm the workflow appears.
 
