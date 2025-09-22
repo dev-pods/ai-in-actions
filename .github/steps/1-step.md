@@ -1,45 +1,45 @@
-## Step 1: Introduction to AI Actions
+## Passo 1: Introdução às AI Actions
 
-In this exercise, you'll learn to integrate AI capabilities directly into your GitHub Actions workflows using GitHub Models. Let's start with understanding the key concepts and then straight to creating your first AI-powered workflow!
+Neste exercício, você aprenderá a integrar capacidades de IA diretamente nos seus workflows do GitHub Actions usando o GitHub Models. Vamos começar entendendo os conceitos principais e depois partir direto para a criação do seu primeiro workflow com IA!
 
-### 📖 Theory: GitHub Models in Actions
+### 📖 Teoria: GitHub Models em Actions
 
-#### 🤖 What is GitHub Models?
+#### 🤖 O que é o GitHub Models?
 
-**[GitHub Models](https://docs.github.com/github-models)** is a service that provides a curated catalog of AI models from leading providers. Among its many use cases, GitHub Models includes an inference API available at `https://models.github.ai/inference` that allows developers to integrate AI capabilities directly into their GitHub workflows and applications.
+**[GitHub Models](https://docs.github.com/github-models)** é um serviço que fornece um catálogo curado de modelos de IA de fornecedores líderes. Entre seus muitos casos de uso, o GitHub Models inclui uma API de inferência disponível em `https://models.github.ai/inference` que permite aos desenvolvedores integrar capacidades de IA diretamente nos seus workflows e aplicações do GitHub.
 
-#### ⚙️ How GitHub Actions work with GitHub Models
+#### ⚙️ Como o GitHub Actions funciona com o GitHub Models
 
-The [integration](https://docs.github.com/en/github-models/use-github-models/integrating-ai-models-into-your-development-workflow#using-ai-models-with-github-actions) between GitHub Actions and GitHub Models is designed to be seamless:
+A [integração](https://docs.github.com/en/github-models/use-github-models/integrating-ai-models-into-your-development-workflow#using-ai-models-with-github-actions) entre GitHub Actions e GitHub Models é projetada para ser perfeita:
 
-- 🔑 **Built-in Authentication**: The GitHub Actions built-in [`GITHUB_TOKEN`](https://docs.github.com/en/actions/tutorials/authenticate-with-github_token#modifying-the-permissions-for-the-github_token) can be used to authorize calls to the GitHub Models service, eliminating the need for additional API keys or complex authentication setup with third party providers.
+- 🔑 **Autenticação Integrada**: O [`GITHUB_TOKEN`](https://docs.github.com/en/actions/tutorials/authenticate-with-github_token#modifying-the-permissions-for-the-github_token) integrado do GitHub Actions pode ser usado para autorizar chamadas ao serviço GitHub Models, eliminando a necessidade de chaves de API adicionais ou configuração complexa de autenticação com provedores terceiros.
 
-- 🔐 **Simple Permissions**: The [`models: read`](https://docs.github.com/en/actions/tutorials/authenticate-with-github_token#modifying-the-permissions-for-the-github_token) permission grants the `GITHUB_TOKEN` access to the GitHub Models inference API for making AI requests.
+- 🔐 **Permissões Simples**: A permissão [`models: read`](https://docs.github.com/en/actions/tutorials/authenticate-with-github_token#modifying-the-permissions-for-the-github_token) concede ao `GITHUB_TOKEN` acesso à API de inferência do GitHub Models para fazer solicitações de IA.
 
-- 🎯 **Easy Integration**: The official [actions/ai-inference](https://github.com/actions/ai-inference) action provides a very simple path to using GitHub Models in GitHub Actions.
+- 🎯 **Integração Fácil**: A action oficial [actions/ai-inference](https://github.com/actions/ai-inference) fornece um caminho muito simples para usar o GitHub Models no GitHub Actions.
 
 > [!TIP]
 >
-> Want to dive deeper? Check out these resources:
+> Quer se aprofundar mais? Confira estes recursos:
 >
-> - 📖 [GitHub Models Documentation](https://docs.github.com/en/github-models)
-> - ⚡ [Rate Limits](https://docs.github.com/en/github-models/use-github-models/prototyping-with-ai-models#rate-limits) and [Moving Beyond Free Limits](https://github.blog/changelog/2025-06-24-github-models-now-supports-moving-beyond-free-limits/) for GitHub Models
+> - 📖 [Documentação do GitHub Models](https://docs.github.com/en/github-models)
+> - ⚡ [Limites de Taxa](https://docs.github.com/en/github-models/use-github-models/prototyping-with-ai-models#rate-limits) e [Indo Além dos Limites Gratuitos](https://github.blog/changelog/2025-06-24-github-models-now-supports-moving-beyond-free-limits/) para GitHub Models
 
-### ⌨️ Activity: Create Your First AI Workflow
+### ⌨️ Atividade: Crie Seu Primeiro Workflow de IA
 
-Now that you understand the concepts, let's put them into practice! Open a new tab of this repository to follow these steps.
+Agora que você entende os conceitos, vamos colocá-los em prática! Abra uma nova aba deste repositório para seguir estes passos.
 
-Let's create a simple workflow that we can trigger manually from the GitHub UI.
+Vamos criar um workflow simples que podemos acionar manualmente pela interface do GitHub.
 
-1. Navigate to the `Code` tab of your repository. Then into `.github/workflows/` directory.
+1. Navegue até a aba `Code` do seu repositório. Em seguida, entre no diretório `.github/workflows/`.
 
-1. Click `Add File` and create a new workflow file named
+1. Clique em `Add File` e crie um novo arquivo de workflow chamado
 
    ```text
    ask-ai.yml
    ```
 
-1. Start by adding the workflow name, manual event trigger and required permissions:
+1. Comece adicionando o nome do workflow, trigger de evento manual e as permissões necessárias:
 
    ```yaml
    name: Ask AI
@@ -50,11 +50,11 @@ Let's create a simple workflow that we can trigger manually from the GitHub UI.
      models: read
    ```
 
-   > ❗ **Caution:** Copy the contents as provided, as this exact workflow name (`Ask AI`) is required to progress to next steps of this exercise.
+   > ❗ **Atenção:** Copie o conteúdo conforme fornecido, pois este nome exato do workflow (`Ask AI`) é necessário para progredir para os próximos passos deste exercício.
 
-1. Now we'll add a job that uses the AI inference action.
+1. Agora vamos adicionar um job que usa a action de inferência de IA.
 
-   In this simple scenario, we'll ask the AI a simple hardcoded question and display the response in the workflow summary:
+   Neste cenário simples, faremos uma pergunta simples codificada para a IA e exibiremos a resposta no resumo do workflow:
 
    ```yaml
    jobs:
@@ -68,43 +68,43 @@ Let's create a simple workflow that we can trigger manually from the GitHub UI.
            with:
              token: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
              prompt: |
-               Give me a programming joke.
+               Me conte uma piada de programação.
 
          - name: Display AI Response
            run: |
-             echo "## 🤖 AI Response" >> $GITHUB_STEP_SUMMARY
+             echo "## 🤖 Resposta da IA" >> $GITHUB_STEP_SUMMARY
              echo "" >> $GITHUB_STEP_SUMMARY
              echo "{% raw %}${{ steps.ai-response.outputs.response }}{% endraw %}" >> $GITHUB_STEP_SUMMARY
    ```
 
-   > ❗ **Caution:** Be mindful of YAML formatting! GitHub's file editor will show red underlines for certain YAML errors.
+   > ❗ **Atenção:** Fique atento à formatação YAML! O editor de arquivos do GitHub mostrará sublinhados vermelhos para certos erros de YAML.
 
-1. Commit the workflow file directly to the `main` branch.
+1. Faça commit do arquivo de workflow diretamente na branch `main`.
 
-### ⌨️ Activity: Test Your AI Workflow
+### ⌨️ Atividade: Teste Seu Workflow de IA
 
-Now let's test the workflow you just created to see AI in action!
+Agora vamos testar o workflow que você acabou de criar para ver a IA em ação!
 
-1. Navigate to the **Actions** tab in your repository.
+1. Navegue até a aba **Actions** no seu repositório.
 
-1. In the left sidebar, look for the **Ask AI** workflow in the workflow list and click on it.
+1. Na barra lateral esquerda, procure pelo workflow **Ask AI** na lista de workflows e clique nele.
 
-1. Click the **Run workflow** button, keep the default branch selected, and click the green **Run workflow** button to trigger it.
+1. Clique no botão **Run workflow**, mantenha a branch padrão selecionada e clique no botão verde **Run workflow** para acioná-lo.
 
-   <img width="900" alt="run workflow manual trigger" src="https://github.com/user-attachments/assets/89d96ce7-ca5e-4f5f-b8d0-25ebd5cdc4d6" />
+   <img width="900" alt="executar workflow com trigger manual" src="https://github.com/user-attachments/assets/89d96ce7-ca5e-4f5f-b8d0-25ebd5cdc4d6" />
 
-1. Wait for the workflow to complete and check the workflow run summary to see the AI's response displayed in a nicely formatted way.
+1. Aguarde o workflow ser concluído e verifique o resumo da execução do workflow para ver a resposta da IA exibida de forma bem formatada.
 
-1. As your workflow completes successfully, Mona will automatically prepare the next step in your learning journey!
+1. Conforme seu workflow é concluído com sucesso, Mona preparará automaticamente o próximo passo na sua jornada de aprendizado!
 
 <details>
-<summary>Having trouble? 🤷</summary><br/>
+<summary>Tendo problemas? 🤷</summary><br/>
 
-- **Workflow fails to run**: Ensure the workflow is complete and properly yaml formatted, if it's not then:
-  - Find the issue in the workflow and commit the changes again to `main` branch
-  - Try running the workflow again
-- **No AI response**: Make sure the `id: ai-response` is set on the AI Inference step and referenced correctly in the Display step
-- **Permission errors**: Double-check that the `models: read` permission is properly configured in your workflow file
-- **Action not found**: Verify you're using the exact action name: `actions/ai-inference@v2`
+- **Workflow falha ao executar**: Certifique-se de que o workflow esteja completo e com formatação yaml adequada, se não estiver então:
+  - Encontre o problema no workflow e faça commit das mudanças novamente na branch `main`
+  - Tente executar o workflow novamente
+- **Sem resposta da IA**: Certifique-se de que o `id: ai-response` esteja definido no step AI Inference e referenciado corretamente no step Display
+- **Erros de permissão**: Verifique novamente se a permissão `models: read` está configurada adequadamente no seu arquivo de workflow
+- **Action não encontrada**: Verifique se você está usando o nome exato da action: `actions/ai-inference@v2`
 
 </details>

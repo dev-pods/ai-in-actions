@@ -1,41 +1,41 @@
-# AI in Actions
+# IA em Actions
 
-_Learn how to integrate AI models directly into your GitHub Actions workflows using GitHub Models._
+_Aprenda como integrar modelos de IA diretamente nos seus workflows do GitHub Actions usando o GitHub Models._
 
-## Welcome
+## Bem-vindo
 
-- **Who is this for**: Developers new to AI integration who want to learn how to incorporate AI capabilities into their GitHub Actions workflows
-- **What you'll learn**: How to use GitHub Models service to add AI inference to your workflows, pass dynamic data to AI prompts, and combine AI actions with other GitHub Actions
-- **What you'll build**: A basic AI question-answering workflow and an automated issue analysis system that comments on new issues
-- **Prerequisites**: Basic familiarity of GitHub Actions (e.g taught in [Hello GitHub Actions](https://github.com/skills-dev/hello-github-actions) exercise)
-- **How long**: This exercise takes less than 30 minutes to complete.
+- **Para quem é este tutorial**: Desenvolvedores iniciantes em integração de IA que desejam aprender como incorporar capacidades de IA nos seus workflows do GitHub Actions
+- **O que você vai aprender**: Como usar o serviço GitHub Models para adicionar inferência de IA aos seus workflows, passar dados dinâmicos para prompts de IA e combinar actions de IA com outras GitHub Actions
+- **O que você vai construir**: Um workflow básico de perguntas e respostas com IA e um sistema automatizado de análise de issues que comenta em novas issues
+- **Pré-requisitos**: Familiaridade básica com GitHub Actions (por exemplo, ensinado no exercício [Hello GitHub Actions](https://github.com/skills-dev/hello-github-actions))
+- **Duração**: Este exercício leva menos de 30 minutos para ser concluído.
 
-In this exercise, you will:
+Neste exercício, você irá:
 
-1. Set up a basic AI inference workflow with proper permissions
-1. Learn how to combine AI inference with other GitHub Actions to create intelligent automation workflows
-1. Build an automated AI issue analysis workflow
+1. Configurar um workflow básico de inferência de IA com as permissões adequadas
+1. Aprender como combinar inferência de IA com outras GitHub Actions para criar workflows de automação inteligentes
+1. Construir um workflow automatizado de análise de issues com IA
 
-### How to start this exercise
+### Como começar este exercício
 
-Simply copy the exercise to your account, then give your favorite Octocat (Mona) **about 20 seconds** to prepare the first lesson, then **refresh the page**.
+Simplesmente copie o exercício para sua conta, então dê ao seu Octocat favorito (Mona) **cerca de 20 segundos** para preparar a primeira lição, depois **atualize a página**.
 
-[![](https://img.shields.io/badge/Copy%20Exercise-%E2%86%92-1f883d?style=for-the-badge&logo=github&labelColor=197935)](https://github.com/new?template_owner=skills&template_name=ai-in-actions&owner=%40me&name=skills-ai-in-actions&description=Exercise:+AI+in+Actions&visibility=public)
+[![](https://img.shields.io/badge/Copiar%20Exercício-%E2%86%92-1f883d?style=for-the-badge&logo=github&labelColor=197935)](https://github.com/new?template_owner=skills&template_name=ai-in-actions&owner=%40me&name=skills-ai-in-actions&description=Exercise:+AI+in+Actions&visibility=public)
 
 <details>
-<summary>Having trouble? 🤷</summary><br/>
+<summary>Tendo problemas? 🤷</summary><br/>
 
-When copying the exercise, we recommend the following settings:
+Ao copiar o exercício, recomendamos as seguintes configurações:
 
-- For owner, choose your personal account or an organization to host the repository.
+- Para proprietário, escolha sua conta pessoal ou uma organização para hospedar o repositório.
 
-- We recommend creating a public repository, since private repositories will use Actions minutes.
+- Recomendamos criar um repositório público, já que repositórios privados usarão minutos de Actions.
 
-If the exercise isn't ready in 20 seconds, please check the [Actions](../../actions) tab.
+Se o exercício não estiver pronto em 20 segundos, verifique a aba [Actions](../../actions).
 
-- Check to see if a job is running. Sometimes it simply takes a bit longer.
+- Verifique se há um job rodando. Às vezes simplesmente demora um pouco mais.
 
-- If the page shows a failed job, please submit an issue. Nice, you found a bug! 🐛
+- Se a página mostrar um job com falha, por favor, abra uma issue. Legal, você encontrou um bug! 🐛
 
 </details>
 

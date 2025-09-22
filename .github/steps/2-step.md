@@ -1,42 +1,67 @@
-## Step 2: Composing AI Workflows
+## Passo 2: Compondo Workflows de IA
 
-Great work! Your first AI workflow is now functional. Next, let's see how to combine the `ai-inference` action with other actions to create meaningful AI workflows for your projects.
+Ótimo trabalho! Seu primeiro workflow de IA agora está funcional. Em seguida, vamos ver como combinar a action `ai-inference` com outr   **Exemplo de corpo:**<details>
+<summary>Tendo problemas? 🤷</summary><br/>
 
-### 📖 Theory: Composing AI Workflows
+- Se o workflow não executou, confirme que:
+  - o workflow está no diretório `.github/workflows`
+  - o trigger é `issues: [opened]` e você criou uma nova issue (não editou uma existente).
+- Se o workflow falhou ao fazer parse, verifique se a indentação YAML está correta e se todos os campos obrigatórios estão presentes.
+- Se o workflow falhou por qualquer motivo, por exemplo, porque estava incompleto ou formatado incorretamente, você precisará corrigi-lo e então abrir outra issue para acionar o workflow novamente.
 
-AI adds the most value in Actions when you connect three sequential processes to create intelligent automation:
+</details>rkdown
+   Recebendo erros 500 quando tento fazer login no meu telefone. Funciona às vezes mas nem sempre.
+   ```
+
+1. Conforme você cria a issue, observe seu workflow rodando na aba **Actions**.
+1. Quando o workflow for concluído, você deve ver um novo comentário na issue com a análise de IA da issue.
+
+<details>
+<summary>Tendo problemas? 🤷</summary><br/>
+
+- Se o workflow não executou, confirme que:
+  - o workflow está no diretório `.github/workflows`
+  - o trigger é `issues: [opened]` e você criou uma nova issue (não editou uma existente).
+- Se o workflow falhou ao fazer parse, verifique se a indentação YAML está correta e se todos os campos obrigatórios estão presentes.
+- Se o workflow falhou por qualquer motivo, por exemplo, porque estava incompleto ou formatado incorretamente, você precisará corrigi-lo e então abrir outra issue para acionar o workflow novamente.
+
+</details>ar workflows de IA significativos para seus projetos.
+
+### 📖 Teoria: Compondo Workflows de IA
+
+A IA adiciona mais valor no Actions quando você conecta três processos sequenciais para criar automação inteligente:
 
 ```mermaid
 graph LR
-    A[🔍 Context Gathering] --> B[🤖 AI Processing]
-    B --> C[🚀 Applying Results]
+    A[🔍 Coleta de Contexto] --> B[🤖 Processamento de IA]
+    B --> C[🚀 Aplicação de Resultados]
 
     style A fill:#4fc3f7,stroke:#333,stroke-width:2px,color:#000
     style B fill:#ffb74d,stroke:#333,stroke-width:2px,color:#000
     style C fill:#ba68c8,stroke:#333,stroke-width:2px,color:#000
 ```
 
-Here's how this workflow pattern works:
+Veja como esse padrão de workflow funciona:
 
-1. **🔍 Context Gathering**: Use GitHub Actions to collect data from [event context](https://docs.github.com/en/actions/learn-github-actions/contexts#github-context), file contents, API results, or outputs from previous workflow steps
-1. **🤖 AI Processing**: Feed the gathered context into `actions/ai-inference` with a focused [system prompt](https://github.com/actions/ai-inference#system-prompts) that defines the AI's role and expected output format.
-1. **🚀 Applying Results**: Use the AI's response as input to another action that creates meaningful change such as posting comments, updating files or creating release notes
+1. **🔍 Coleta de Contexto**: Use GitHub Actions para coletar dados do [contexto de eventos](https://docs.github.com/en/actions/learn-github-actions/contexts#github-context), conteúdo de arquivos, resultados de API ou saídas de passos anteriores do workflow
+1. **🤖 Processamento de IA**: Alimente o contexto coletado na `actions/ai-inference` com um [system prompt](https://github.com/actions/ai-inference#system-prompts) focado que define o papel da IA e o formato de saída esperado.
+1. **🚀 Aplicação de Resultados**: Use a resposta da IA como entrada para outra action que cria mudanças significativas como postar comentários, atualizar arquivos ou criar notas de release
 
-This three-step pattern keeps workflows maintainable while automating judgment-heavy tasks that would be difficult to script with traditional logic.
+Este padrão de três passos mantém os workflows sustentáveis enquanto automatiza tarefas que requerem julgamento e que seriam difíceis de script com lógica tradicional.
 
-### ⌨️ Activity: Create an automated AI issue analysis workflow
+### ⌨️ Atividade: Crie um workflow automatizado de análise de issues com IA
 
-Let's build a workflow that will automatically analyze newly created GitHub issues, providing immediate feedback about missing information, suggesting improvements, and asking clarifying questions.
+Vamos construir um workflow que analisará automaticamente issues recém-criadas do GitHub, fornecendo feedback imediato sobre informações faltando, sugerindo melhorias e fazendo perguntas de esclarecimento.
 
-We'll follow the three-step pattern: gathering context from issue events, processing with AI, and posting results as comments.
+Seguiremos o padrão de três passos: coletando contexto de eventos de issues, processando com IA e postando resultados como comentários.
 
-1. Create a new workflow file named:
+1. Crie um novo arquivo de workflow chamado:
 
    ```text
    issue-completeness.yml
    ```
 
-1. Add the workflow metadata and permissions
+1. Adicione os metadados do workflow e as permissões
 
    ```yaml
    name: Issue Completeness
@@ -50,15 +75,15 @@ We'll follow the three-step pattern: gathering context from issue events, proces
      issues: write
    ```
 
-   This workflow will run whenever a new issue is opened with the permissions to access GitHub Models and to write new issue comments.
+   Este workflow será executado sempre que uma nova issue for aberta com as permissões para acessar GitHub Models e para escrever novos comentários em issues.
 
-   > ❗ **Caution:** Copy the contents as provided, as this exact workflow name (`Issue Completeness`) is required to progress to next steps of this exercise.
+   > ❗ **Atenção:** Copie o conteúdo conforme fornecido, pois este nome exato do workflow (`Issue Completeness`) é necessário para progredir para os próximos passos deste exercício.
 
-1. Now we'll create a job that uses the AI inference action.
+1. Agora vamos criar um job que usa a action de inferência de IA.
 
-   In this scenario we want to analyze the issue content to provide intelligent feedback and recommendations:
+   Neste cenário queremos analisar o conteúdo da issue para fornecer feedback inteligente e recomendações:
 
-   GitHub Actions automatically provides us with [rich context](https://docs.github.com/en/webhooks/webhook-events-and-payloads?actionType=opened#issues) through the `github.event` object whenever an issue is opened. This includes the issue title, body content, and author information—exactly the data `ai-inference` needs to provide intelligent analysis.
+   O GitHub Actions automaticamente nos fornece [contexto rico](https://docs.github.com/en/webhooks/webhook-events-and-payloads?actionType=opened#issues) através do objeto `github.event` sempre que uma issue é aberta. Isso inclui o título da issue, conteúdo do corpo e informações do autor—exatamente os dados que a `ai-inference` precisa para fornecer análise inteligente.
 
    ```yaml
    jobs:
@@ -73,25 +98,25 @@ We'll follow the three-step pattern: gathering context from issue events, proces
              token: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
              max-tokens: 1000
              system-prompt: |
-               You are a GitHub issue assistant. Your task is to analyze newly opened issues for completeness.
+               Você é um assistente de issues do GitHub. Sua tarefa é analisar issues recém-abertas para completude.
 
-               Provide concise, helpful suggestions, ask clarifying questions and identify any missing information that would help resolve the issue faster.
+               Forneça sugestões concisas e úteis, faça perguntas de esclarecimento e identifique qualquer informação faltando que ajudaria a resolver a issue mais rapidamente.
 
-               Always respond with ready-to-use markdown content (no code blocks) that can be posted directly as an issue comment.
+               Sempre responda com conteúdo markdown pronto para usar (sem blocos de código) que pode ser postado diretamente como um comentário da issue.
 
-               Sign off as AI assistant.
+               Assine como assistente de IA.
              prompt: |
-               New issue was opened by {% raw %}${{ github.event.issue.user.login }}{% endraw %}
-               Title: {% raw %}${{ github.event.issue.title }}{% endraw %}
-               Body:
+               Nova issue foi aberta por {% raw %}${{ github.event.issue.user.login }}{% endraw %}
+               Título: {% raw %}${{ github.event.issue.title }}{% endraw %}
+               Corpo:
                ---
                {% raw %}${{ github.event.issue.body }}{% endraw %}
                ---
    ```
 
-   > 🪧 **Note:** The **`max-tokens`** parameter is used to control the maximum length of the response. Low values could mean the response is cut off halway.
+   > 🪧 **Nota:** O parâmetro **`max-tokens`** é usado para controlar o comprimento máximo da resposta. Valores baixos podem significar que a resposta é cortada pela metade.
 
-1. Now let's add a step that will post the issue comment using the `ai-inference` `response` output:
+1. Agora vamos adicionar um step que postará o comentário da issue usando a saída `response` da `ai-inference`:
 
    ```yaml
    - name: Comment results on the issue
@@ -103,26 +128,68 @@ We'll follow the three-step pattern: gathering context from issue events, proces
 
    ```
 
-   > ⚠️ **Important:** Make sure this step is properly indented at the same level as the previous step. Both steps should be at the same indentation level under the `steps:` section.
+   > ⚠️ **Importante:** Certifique-se de que este step esteja adequadamente indentado no mesmo nível do step anterior. Ambos os steps devem estar no mesmo nível de indentação sob a seção `steps:`.
 
-1. And we're done! Commit the file directly to the `main` branch, then open the **Actions** tab and confirm the workflow appears.
+1. E pronto! Faça commit do arquivo diretamente na branch `main`, então abra a aba **Actions** e confirme que o workflow aparece.
 
 <details>
-<summary>Having trouble? 🤷</summary><br/>
+<summary>Tendo problemas? 🤷</summary><br/>
 
-- If the action does not appear in the **Actions** tab verify you put it in `.github/workflows/` directory with `.yml` extension
+- Se a action não aparece na aba **Actions**, verifique se você a colocou no diretório `.github/workflows/` com extensão `.yml`
 
 </details>
 
-### ⌨️ Activity: Test the workflow
+### ⌨️ Atividade: Teste o workflow
 
-1. Navigate to the Issues tab and click **New issue**.
-1. Create an issue with any title and body you'd like, or use these examples:
+1. Navegue até a aba Issues e clique em **New issue**.
+1. Crie uma issue com qualquer título e corpo que desejar, ou use estes exemplos:
 
-   **Title example:**
+   **Exemplo de título:**
 
    ```text
-   Login form throwing 500 errors on mobile
+   Formulário de login retornando erros 500 no mobile
+   ```
+
+   **Exemplo de corpo:**
+
+   ```markdown
+   Recebendo erros 500 quando tento fazer login no meu telefone. Funciona às vezes mas nem sempre.
+   ```
+
+1. Conforme você cria a issue, observe seu workflow rodando na aba **Actions**.
+1. Quando o workflow for concluído, você deve ver um novo comentário na issue com a análise de IA da issue.
+
+<details>
+<summary>Tendo problemas? 🤷</summary><br/>
+
+- Se o workflow não executou, confirme que:
+  - o workflow está no diretório `.github/workflows`
+  - o trigger é `issues: [opened]` e você criou uma nova issue (não editou uma existente).
+- Se o workflow falhou ao fazer parse, verifique se a indentação YAML está correta e se todos os campos obrigatórios estão presentes.
+- Se o workflow falhou por qualquer motivo, por exemplo, porque estava incompleto ou formatado incorretamente, você precisará corrigi-lo e então abrir outra issue para acionar o workflow novamente.
+
+</details>   ```
+
+   > ⚠️ **Importante:** Certifique-se de que este step esteja adequadamente indentado no mesmo nível do step anterior. Ambos os steps devem estar no mesmo nível de indentação sob a seção `steps:`.
+
+1. E pronto! Faça commit do arquivo diretamente na branch `main`, então abra a aba **Actions** e confirme que o workflow aparece.
+
+<details>
+<summary>Tendo problemas? 🤷</summary><br/>
+
+- Se a action não aparece na aba **Actions**, verifique se você a colocou no diretório `.github/workflows/` com extensão `.yml`
+
+</details>
+
+### ⌨️ Atividade: Teste o workflow
+
+1. Navegue até a aba Issues e clique em **New issue**.
+1. Crie uma issue com qualquer título e corpo que desejar, ou use estes exemplos:
+
+   **Exemplo de título:**
+
+   ```text
+   Formulário de login retornando erros 500 no mobile
    ```
 
    **Body example:**
@@ -131,8 +198,8 @@ We'll follow the three-step pattern: gathering context from issue events, proces
    Getting 500 errors when trying to log in on my phone. It works sometimes but not always.
    ```
 
-1. As you create the issue, you observe your workflow running in the **Actions** tab.
-1. When the workflow completes, you should see a new comment on the issue with the AI Issue analysis.
+1. Conforme você cria a issue, observe seu workflow rodando na aba **Actions**.
+1. Quando o workflow for concluído, você deve ver um novo comentário na issue com a análise de IA da issue.
 
 <details>
 <summary>Having trouble? 🤷</summary><br/>
