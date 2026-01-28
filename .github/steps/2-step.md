@@ -1,31 +1,6 @@
 ## Passo 2: Compondo Workflows de IA
 
-Ótimo trabalho! Seu primeiro workflow de IA agora está funcional. Em seguida, vamos ver como combinar a action `ai-inference` com outr   **Exemplo de corpo:**<details>
-<summary>Tendo problemas? 🤷</summary><br/>
-
-- Se o workflow não executou, confirme que:
-  - o workflow está no diretório `.github/workflows`
-  - o trigger é `issues: [opened]` e você criou uma nova issue (não editou uma existente).
-- Se o workflow falhou ao fazer parse, verifique se a indentação YAML está correta e se todos os campos obrigatórios estão presentes.
-- Se o workflow falhou por qualquer motivo, por exemplo, porque estava incompleto ou formatado incorretamente, você precisará corrigi-lo e então abrir outra issue para acionar o workflow novamente.
-
-</details>
-   Recebendo erros 500 quando tento fazer login no meu telefone. Funciona às vezes mas nem sempre.
-   ```
-
-1. Conforme você cria a issue, observe seu workflow rodando na aba **Actions**.
-1. Quando o workflow for concluído, você deve ver um novo comentário na issue com a análise de IA da issue.
-
-<details>
-<summary>Tendo problemas? 🤷</summary><br/>
-
-- Se o workflow não executou, confirme que:
-  - o workflow está no diretório `.github/workflows`
-  - o trigger é `issues: [opened]` e você criou uma nova issue (não editou uma existente).
-- Se o workflow falhou ao fazer parse, verifique se a indentação YAML está correta e se todos os campos obrigatórios estão presentes.
-- Se o workflow falhou por qualquer motivo, por exemplo, porque estava incompleto ou formatado incorretamente, você precisará corrigi-lo e então abrir outra issue para acionar o workflow novamente.
-
-</details>ar workflows de IA significativos para seus projetos.
+Ótimo trabalho! Seu primeiro fluxo de trabalho de IA já está funcionando. Agora, vamos ver como combinar a ação de `ai-inference` com outras ações para criar fluxos de trabalho de IA relevantes para seus projetos.
 
 ### 📖 Teoria: Compondo Workflows de IA
 
@@ -167,47 +142,5 @@ Seguiremos o padrão de três passos: coletando contexto de eventos de issues, p
   - o trigger é `issues: [opened]` e você criou uma nova issue (não editou uma existente).
 - Se o workflow falhou ao fazer parse, verifique se a indentação YAML está correta e se todos os campos obrigatórios estão presentes.
 - Se o workflow falhou por qualquer motivo, por exemplo, porque estava incompleto ou formatado incorretamente, você precisará corrigi-lo e então abrir outra issue para acionar o workflow novamente.
-
-</details>   ```
-
-   > ⚠️ **Importante:** Certifique-se de que este step esteja adequadamente indentado no mesmo nível do step anterior. Ambos os steps devem estar no mesmo nível de indentação sob a seção `steps:`.
-
-1. E pronto! Faça commit do arquivo diretamente na branch `main`, então abra a aba **Actions** e confirme que o workflow aparece.
-
-<details>
-<summary>Tendo problemas? 🤷</summary><br/>
-
-- Se a action não aparece na aba **Actions**, verifique se você a colocou no diretório `.github/workflows/` com extensão `.yml`
-
-</details>
-
-### ⌨️ Atividade: Teste o workflow
-
-1. Navegue até a aba Issues e clique em **New issue**.
-1. Crie uma issue com qualquer título e corpo que desejar, ou use estes exemplos:
-
-   **Exemplo de título:**
-
-   ```text
-   Formulário de login retornando erros 500 no mobile
-   ```
-
-   **Body example:**
-
-   ```markdown
-   Getting 500 errors when trying to log in on my phone. It works sometimes but not always.
-   ```
-
-1. Conforme você cria a issue, observe seu workflow rodando na aba **Actions**.
-1. Quando o workflow for concluído, você deve ver um novo comentário na issue com a análise de IA da issue.
-
-<details>
-<summary>Having trouble? 🤷</summary><br/>
-
-- If the workflow didn’t run, confirm that:
-  - the workflow is in `.github/workflows` directory
-  - the trigger is `issues: [opened]` and you created a new issue (not edited an existing one).
-- If the workflow failed to parse, check that the YAML indentation is correct and that all required fields are present.
-- If the workflow failed for any reason, e.g because it was incomplete or incorrectly formatted, you will need to fix it and then open another issue to trigger the workflow again.
 
 </details>
