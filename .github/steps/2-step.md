@@ -9,7 +9,7 @@
 - Se o workflow falhou ao fazer parse, verifique se a indentação YAML está correta e se todos os campos obrigatórios estão presentes.
 - Se o workflow falhou por qualquer motivo, por exemplo, porque estava incompleto ou formatado incorretamente, você precisará corrigi-lo e então abrir outra issue para acionar o workflow novamente.
 
-</details>rkdown
+</details>
    Recebendo erros 500 quando tento fazer login no meu telefone. Funciona às vezes mas nem sempre.
    ```
 
